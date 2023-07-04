@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.7.7">
+  <name>NUCLEO-H563ZI_BSP</name>
+  <vendor>Keil</vendor>
+  <description>STMicroelectronics STM32H5 Series NUCLEO-H563ZI Board Support Pack</description>
+  <url>https://github.com/MDK-Packs/Pack/raw/master/NUCLEO-H563ZI_BSP/</url>
+  <repository type="git">https://github.com/MDK-Packs/NUCLEO-H563ZI_BSP.git</repository>
+
+  <releases>
+    <release version="1.0.0-dev0">
+      Board description and documentation for NUCLEO-H563ZI
+      Synchronized with STM32CubeH5 Firmware Package version V1.0.0
+      Drivers:
+      - Board Drivers and Config files
+      - CMSIS-Driver VIO
+      Example projects:
+      - CMSIS-RTOS2 Blinky (verify the basic tool setup)
+      - CMSIS-RTOS2 Platform (configure the board hardware)
+      - Middleware: USB Device: HID, Mass Storage
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ST</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>STM32H5</keyword>
+    <keyword>NUCLEO-H563ZI</keyword>
+  </keywords>
+
+  <requirements>
+    <packages>
+      <package vendor="Keil" name="STM32H5xx_DFP" version="1.1.0"/>
+    </packages>
+  </requirements>
+
+  <conditions>
+    <condition id="STM32H563">
+      <description>STMicroelectronics STM32H563 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32H563*"/>
+    </condition>
+    
+    <!-- NUCLEO-H563ZI BSP Conditions -->
+    <condition id="NUCLEO-H563ZI BSP">
+      <description>STMicroelectronics NUCLEO-H563ZI BSP</description>
+      <require condition="STM32H563"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="EXTI"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="UART"/>
+    </condition>
+    <condition id="NUCLEO-H563ZI BSP USB PD">
+      <description>STMicroelectronics NUCLEO-H563ZI BSP USB PD</description>
+      <require condition="STM32H563"/>
+      <require Cclass="Device"        Cgroup="STM32Cube LL" Csub="ADC"/>
+      <require Cclass="Board Support" Cgroup="Drivers"      Csub="Basic I/O"/>
+    </condition>
+    <condition id="NUCLEO-H563ZI VIO">
+      <description>Virtual I/O NUCLEO-H563ZI</description>
+      <require condition="STM32H563"/>
+      <require Cclass="Board Support" Cgroup="Drivers" Csub="Basic I/O"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <bundle Cbundle="NUCLEO-H563ZI" Cclass="Board Support" Cversion="1.0.0">
+      <description>STMicroelectronics NUCLEO-H563ZI Board</description>
+      <doc></doc>
+      <component Cgroup="Drivers" Csub="Basic I/O" condition="NUCLEO-H563ZI BSP">
+        <description>LEDs, push-buttons and COM ports for NUCLEO-H563ZI Board</description>
+        <files>
+          <file category="header" name="Drivers/Config/stm32h5xx_nucleo_conf.h" attr="config" version="1.0.0"/>
+          <file category="header" name="Drivers/STM32H5xx_Nucleo/stm32h5xx_nucleo.h"/>
+          <file category="source" name="Drivers/STM32H5xx_Nucleo/stm32h5xx_nucleo.c"/>
+        </files>
+      </component>
+      <component Cgroup="Drivers" Csub="USB PD" condition="NUCLEO-H563ZI BSP USB PD">
+        <description>USB Type C power delivery for STMicroelectronics NUCLEO-H563ZI Board</description>
+        <files>
+          <file category="header" name="Drivers/STM32H5xx_Nucleo/stm32h5xx_nucleo_usbpd_pwr.h"/>
+          <file category="source" name="Drivers/STM32H5xx_Nucleo/stm32h5xx_nucleo_usbpd_pwr.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- VIO component for NUCLEO-H563ZI -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant= "NUCLEO-H563ZI" Cversion="1.0.0" Capiversion="0.1.0"   condition="NUCLEO-H563ZI VIO">
+      <description>Virtual I/O implementation for NUCLEO-H563ZI</description>
+      <RTE_Components_h>
+        #define RTE_VIO_BOARD
+        #define RTE_VIO_NUCLEO_H563ZI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/vio_NUCLEO-H563ZI.c"/>
+      </files>
+    </component>
+  </components>
+
+  <boards>
+    <!-- NUCLEO-H563ZI Board Support -->
+    <board vendor="STMicroelectronics" name="NUCLEO-H563ZI" revision="Rev.C"
+           salesContact="https://www.st.com/content/st_com/en/contact-us.html"
+           orderForm   ="https://www.st.com/en/evaluation-tools/nucleo-h563zi.html">
+      <description>STM32 Nucleo development board with STM32H563 MCU</description>
+      <image small="Images/NUCLEO_small.jpg"
+             large="Images/NUCLEO_large.jpg" public="true"/>
+      <book category="overview"  name="https://www.st.com/en/evaluation-tools/nucleo-h563zi.html" title="STM32 Nucleo board"/>
+      <book category="overview"  name="https://www.st.com/resource/en/data_brief/nucleo-h563zi.pdf" title="Data brief" public="true"/>
+      <book category="setup"     name="https://www.st.com/resource/en/user_manual/um1727-getting-started-with-stm32-nucleo-board-software-development-tools-stmicroelectronics.pdf" title="Getting started" public="true"/>
+      <book category="manual"    name="https://www.st.com/resource/en/user_manual/um3115-stm32h5-nucleo144-board-mb1404-stmicroelectronics.pdf" title="User Manual" public="true"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/mb1404-h563zi-c01-schematic.pdf" title="Schematics" public="true"/>
+      <book category="other"     name="Documents/README.md" title="Guide" public="true"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32H563ZITx"/> 
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32H563"/>
+      <feature type="ODbg"      n="1"              name="On-board ST-LINK-V3EC"/>
+      <feature type="PWR"       n="4"              name="USB VBUS, ext. VIN, ext. 5V, ext +3.3V"/>
+      <feature type="CustomFF"  n="2"              name="STMicroelectronics Morpho connector"/>
+      <feature type="ArduinoFF" n="2"              name="STMicroelectronics Arduino connector"/>
+      <feature type="ETH"       n="1"              name="10/100 Ethernet Port"/>
+      <feature type="USB"       n="1"              name="USB Type-C Sink device FS"/>
+      <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+      <feature type="LED"       n="5"              name="LEDs: COM, Power, User LEDs"/>
+      <debugInterface adapter="ST-Link" connector="USB-C"/>
+      <debugProbe connector="USB-C" debugClock="10000000" debugLink="swd" name="ST-Link"/>
+    </board>
+  </boards>
+
+<examples> 
+    <example name="Blinky" doc="README.md" folder="Projects/Blinky">
+      <description>CMSIS-RTOS2 Blinky example with VIO</description>
+      <board name="NUCLEO-H563ZI" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="CMSIS Driver" Cgroup="VIO"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+   
+    <example name="Platform" doc="README.md" folder="Projects/Platform">
+      <description>CMSIS-RTOS2 Platform example with VIO</description>
+      <board name="NUCLEO-H563ZI" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="Platform.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="CMSIS Driver" Cgroup="VIO"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="USB Device HID" doc="Abstract.txt" folder="Projects/Middleware/USB/Device/HID">
+      <description>USB Human Interface Device providing access from PC to board LEDs and push buttons</description>
+      <board name="NUCLEO-H563ZI" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="HID.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="HID"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>HID</keyword>
+      </attributes>
+    </example>
+
+    <example name="USB Device Mass Storage" doc="Abstract.txt" folder="Projects/Middleware/USB/Device/MassStorage">
+      <description>USB Mass Storage Device using RAM as storage media</description>
+      <board name="NUCLEO-H563ZI" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="uv" load="MassStorage.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="USB" Cgroup="Device" Csub="MSC"/>
+        <category>Middleware</category>
+        <category>USB Device</category>
+        <keyword>Memory Disk</keyword>
+      </attributes>
+    </example>
+  </examples>
+</package>
