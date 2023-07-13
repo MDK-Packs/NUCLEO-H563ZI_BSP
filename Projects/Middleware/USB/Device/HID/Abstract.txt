@@ -1,15 +1,20 @@
-This is an HID example that demonstrates Mass Storage Class (MSC)
+This is an HID example that demonstrates Human Interface Device (HID)
 on USB Device.
 
 Detailed description is available on:
-www.keil.com/pack/doc/MW/USB/html/dev_msc_tutorial.html
+www.keil.com/pack/doc/MW/USB/html/dev_hid_tutorial.html
 
 Board:                          STM         'NUCLEO-H563ZI'
 Microcontroller:                STM         'STM32H563ZITx'
 Clock Settings:                 CPU clock    250 MHz
                                 USB clock     48 MHz
 USB Full-speed:                 USB_FS (connector CN13 - USB Type-C)
-Storage Media:                  RAM memory
+User Interface:                 inputs:      USER button
+                                outputs:     RED, GREEN and YELLOW LEDs
+
+The example demonstrates a Human Interface Device. The board LEDs and
+push button can be accessed from the PC through a custom
+HID Client Program (<Keil-root>\ARM\Utilities\HID_Client\Release\HIDClient.exe).
 
 The program is available in different targets:
 

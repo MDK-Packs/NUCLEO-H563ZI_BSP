@@ -7,6 +7,18 @@
   <repository type="git">https://github.com/MDK-Packs/NUCLEO-H563ZI_BSP.git</repository>
 
   <releases>
+    <release version="1.0.0-dev1">
+      Corrected Abstract.txt in USB HID example
+      Corrected Product ID in USB Mass Storage example
+      Updated Board drivers (from en.stm32cubeh5-v1-0-0.zip file)
+      Updated CubeMx projects to latest CubeMx v6.9.0
+      Updated main README.md (synced with README.md from B-U585I-IOT02A_BSP)
+      Updated Blinky.c (synced with .pdsc from B-U585I-IOT02A_BSP)
+      Updated README.md in Blinky example (added information about VIO mapping)
+      Updated RTX_Config.h in Blinky example to be same as one in the Platform example
+      Updated linker scripts (unified, removed ones from Blinky and Platform examples root folder)
+      Minor .pdsc update (synced with .pdsc from B-U585I-IOT02A_BSP)
+    </release>
     <release version="1.0.0-dev0">
       Board description and documentation for NUCLEO-H563ZI
       Synchronized with STM32CubeH5 Firmware Package version V1.0.0
@@ -39,14 +51,14 @@
       <description>STMicroelectronics STM32H563 Devices</description>
       <require Dvendor="STMicroelectronics:13" Dname="STM32H563*"/>
     </condition>
-    
+
     <!-- NUCLEO-H563ZI BSP Conditions -->
     <condition id="NUCLEO-H563ZI BSP">
       <description>STMicroelectronics NUCLEO-H563ZI BSP</description>
       <require condition="STM32H563"/>
       <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
-      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
       <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="EXTI"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
       <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="UART"/>
     </condition>
     <condition id="NUCLEO-H563ZI BSP USB PD">
@@ -83,7 +95,7 @@
       </component>
     </bundle>
 
-    <!-- VIO component for NUCLEO-H563ZI -->
+    <!-- CMSIS VIO Driver component for NUCLEO-H563ZI -->
     <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant= "NUCLEO-H563ZI" Cversion="1.0.0" Capiversion="0.1.0"   condition="NUCLEO-H563ZI VIO">
       <description>Virtual I/O implementation for NUCLEO-H563ZI</description>
       <RTE_Components_h>
@@ -125,7 +137,7 @@
     </board>
   </boards>
 
-<examples> 
+  <examples>
     <example name="Blinky" doc="README.md" folder="Projects/Blinky">
       <description>CMSIS-RTOS2 Blinky example with VIO</description>
       <board name="NUCLEO-H563ZI" vendor="STMicroelectronics"/>
@@ -133,14 +145,14 @@
         <environment name="uv" load="Blinky.uvprojx"/>
       </project>
       <attributes>
-        <component Cclass="CMSIS" Cgroup="CORE"/>
-        <component Cclass="Device" Cgroup="Startup"/>
-        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="CMSIS"        Cgroup="CORE"/>
+        <component Cclass="Device"       Cgroup="Startup"/>
+        <component Cclass="CMSIS"        Cgroup="RTOS"/>
         <component Cclass="CMSIS Driver" Cgroup="VIO"/>
         <category>Getting Started</category>
       </attributes>
     </example>
-   
+
     <example name="Platform" doc="README.md" folder="Projects/Platform">
       <description>CMSIS-RTOS2 Platform example with VIO</description>
       <board name="NUCLEO-H563ZI" vendor="STMicroelectronics"/>
@@ -148,9 +160,9 @@
         <environment name="uv" load="Platform.uvprojx"/>
       </project>
       <attributes>
-        <component Cclass="CMSIS" Cgroup="CORE"/>
-        <component Cclass="Device" Cgroup="Startup"/>
-        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="CMSIS"        Cgroup="CORE"/>
+        <component Cclass="Device"       Cgroup="Startup"/>
+        <component Cclass="CMSIS"        Cgroup="RTOS"/>
         <component Cclass="CMSIS Driver" Cgroup="VIO"/>
         <category>Getting Started</category>
       </attributes>
