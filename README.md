@@ -1,2 +1,2 @@
-# NUCLEO-H563ZI_BSP
-STMicroelectronics NUCLEO-H563ZI board support CMSIS Software Pack
+# NUCLEO-H563ZI Board Support Pack
+STMicroelectronics NUCLEO-H563ZI board support CMSIS-Pack
