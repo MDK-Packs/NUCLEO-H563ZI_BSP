@@ -7,6 +7,9 @@
   <repository type="git">https://github.com/MDK-Packs/NUCLEO-H563ZI_BSP.git</repository>
 
   <releases>
+    <release version="1.0.0-dev2">
+      Synchronized with STM32CubeH5 Firmware Package version V1.1.0
+    </release>
     <release version="1.0.0-dev1">
       Corrected Abstract.txt in USB HID example
       Corrected Product ID in USB Mass Storage example
