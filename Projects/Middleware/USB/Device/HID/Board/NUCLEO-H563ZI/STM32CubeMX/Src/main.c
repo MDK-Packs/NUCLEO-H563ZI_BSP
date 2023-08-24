@@ -79,6 +79,7 @@ static void MX_LPUART1_UART_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_USB_PCD_Init(void);
+static void MX_MEMORYMAP_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -148,6 +149,7 @@ int main(void)
   MX_GPIO_Init();
   MX_ICACHE_Init();
   MX_USB_PCD_Init();
+  MX_MEMORYMAP_Init();
   /* USER CODE BEGIN 2 */
 
 #ifdef RTE_VIO_BOARD
@@ -459,6 +461,27 @@ static void MX_USART3_UART_Init(void)
   /* USER CODE BEGIN USART3_Init 2 */
 
   /* USER CODE END USART3_Init 2 */
+
+}
+
+/**
+  * @brief MEMORYMAP Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_MEMORYMAP_Init(void)
+{
+
+  /* USER CODE BEGIN MEMORYMAP_Init 0 */
+
+  /* USER CODE END MEMORYMAP_Init 0 */
+
+  /* USER CODE BEGIN MEMORYMAP_Init 1 */
+
+  /* USER CODE END MEMORYMAP_Init 1 */
+  /* USER CODE BEGIN MEMORYMAP_Init 2 */
+
+  /* USER CODE END MEMORYMAP_Init 2 */
 
 }
 

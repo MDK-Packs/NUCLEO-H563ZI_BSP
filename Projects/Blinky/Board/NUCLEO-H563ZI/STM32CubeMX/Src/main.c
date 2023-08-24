@@ -60,6 +60,7 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_ICACHE_Init(void);
+static void MX_MEMORYMAP_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -128,6 +129,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_ICACHE_Init();
+  MX_MEMORYMAP_Init();
   /* USER CODE BEGIN 2 */
 
 #ifdef RTE_VIO_BOARD
@@ -234,6 +236,27 @@ static void MX_ICACHE_Init(void)
   /* USER CODE BEGIN ICACHE_Init 2 */
 
   /* USER CODE END ICACHE_Init 2 */
+
+}
+
+/**
+  * @brief MEMORYMAP Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_MEMORYMAP_Init(void)
+{
+
+  /* USER CODE BEGIN MEMORYMAP_Init 0 */
+
+  /* USER CODE END MEMORYMAP_Init 0 */
+
+  /* USER CODE BEGIN MEMORYMAP_Init 1 */
+
+  /* USER CODE END MEMORYMAP_Init 1 */
+  /* USER CODE BEGIN MEMORYMAP_Init 2 */
+
+  /* USER CODE END MEMORYMAP_Init 2 */
 
 }
 
