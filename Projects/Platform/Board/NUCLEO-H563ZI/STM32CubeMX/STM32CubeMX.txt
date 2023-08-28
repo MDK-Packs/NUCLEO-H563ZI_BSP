@@ -1,6 +1,6 @@
 Configuration	STM32CubeMX
-STM32CubeMX 	6.9.0
-Date	08/21/2023
+STM32CubeMX 	6.9.1
+Date	08/24/2023
 MCU	STM32H563ZITx
 
 
@@ -166,7 +166,7 @@ Project Settings :
 Project Name : STM32CubeMX
 Project Folder : D:\Temp\Projects\Platform\Board\NUCLEO-H563ZI\STM32CubeMX
 Toolchain / IDE : MDK-ARM V5.37
-Firmware Package Name and Version : STM32Cube FW_H5 V1.0.0
+Firmware Package Name and Version : STM32Cube FW_H5 V1.1.0
 
 
 Code Generation Settings : 
