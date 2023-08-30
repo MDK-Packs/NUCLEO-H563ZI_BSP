@@ -1,38 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.7.7">
+
+<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.7/schema/PACK.xsd">
   <name>NUCLEO-H563ZI_BSP</name>
-  <vendor>Keil</vendor>
   <description>STMicroelectronics STM32H5 Series NUCLEO-H563ZI Board Support Pack</description>
-  <url>https://github.com/MDK-Packs/Pack/raw/master/NUCLEO-H563ZI_BSP/</url>
+  <vendor>Keil</vendor>
+  <url>https://www.keil.arm.com/packs/</url>
   <repository type="git">https://github.com/MDK-Packs/NUCLEO-H563ZI_BSP.git</repository>
 
   <releases>
-    <release version="1.0.0-dev3">
-      Example projects:
-      - Updated STM32CubeMX projects to use STM32CubeMX V6.9.1
-    </release>
-    <release version="1.0.0-dev2">
-      Synchronized with STM32CubeH5 Firmware Package version V1.1.0
-    </release>
-    <release version="1.0.0-dev1">
-      Corrected Abstract.txt in USB HID example
-      Corrected Product ID in USB Mass Storage example
-      Updated Board drivers (from en.stm32cubeh5-v1-0-0.zip file)
-      Updated CubeMx projects to latest CubeMx v6.9.0
-      Updated main README.md (synced with README.md from B-U585I-IOT02A_BSP)
-      Updated Blinky.c (synced with .pdsc from B-U585I-IOT02A_BSP)
-      Updated README.md in Blinky example (added information about VIO mapping)
-      Updated RTX_Config.h in Blinky example to be same as one in the Platform example
-      Updated linker scripts (unified, removed ones from Blinky and Platform examples root folder)
-      Minor .pdsc update (synced with .pdsc from B-U585I-IOT02A_BSP)
-    </release>
-    <release version="1.0.0-dev0">
+    <release version="1.0.0-dev">
+      Active development ...
+
       Board description and documentation for NUCLEO-H563ZI
-      Synchronized with STM32CubeH5 Firmware Package version V1.0.0
+      Synchronized with STM32CubeH5 Firmware Package version V1.1.0
       Drivers:
       - Board Drivers and Config files
       - CMSIS-Driver VIO
-      Example projects:
+      Example projects (configured with STM32CubeMX V6.9.1):
       - CMSIS-RTOS2 Blinky (verify the basic tool setup)
       - CMSIS-RTOS2 Platform (configure the board hardware)
       - Middleware: USB Device: HID, Mass Storage
@@ -49,7 +33,8 @@
 
   <requirements>
     <packages>
-      <package vendor="Keil" name="STM32H5xx_DFP" version="1.1.0"/>
+      <package vendor="Keil" name="STM32H5xx_DFP" version="1.2.0"/>
+      <package vendor="ARM"  name="CMSIS"         version="5.9.0"/>
     </packages>
   </requirements>
 
@@ -82,7 +67,7 @@
   </conditions>
 
   <components>
-    <bundle Cbundle="NUCLEO-H563ZI" Cclass="Board Support" Cversion="1.0.0">
+    <bundle Cbundle="NUCLEO-H563ZI" Cclass="Board Support" Cversion="1.0.1">
       <description>STMicroelectronics NUCLEO-H563ZI Board</description>
       <doc></doc>
       <component Cgroup="Drivers" Csub="Basic I/O" condition="NUCLEO-H563ZI BSP">
