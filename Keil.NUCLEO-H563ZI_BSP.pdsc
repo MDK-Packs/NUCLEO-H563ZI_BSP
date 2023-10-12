@@ -8,15 +8,17 @@
   <license>LICENSE</license>
 
   <releases>
+    <release version="1.0.0-dev2">
+      Example projects:
+      - Update VIO to API 1.0.0
+      - Synchronize to CMSIS 6.0.0
+    </release>
     <release version="1.0.0-dev1">
       Pack Description:
       - Add LICENSE file
       - Update schemaVersion (1.7.28)
     </release>
     <release version="1.0.0-dev0">
-      Pack Description:
-      - Add LICENSE file
-      - Update schemaVersion (1.7.28)
       Board description and documentation for NUCLEO-H563ZI
       Synchronize with STM32CubeH5 Firmware Package version V1.1.0
       Drivers:
@@ -26,6 +28,7 @@
       - CMSIS-RTOS2 Blinky (verify the basic tool setup)
       - CMSIS-RTOS2 Platform (configure the board hardware)
       - Middleware: USB Device: HID, Mass Storage
+      - Middleware, Blinky, Platform: Synchronize to CMSIS 6.0.0
     </release>
   </releases>
 
@@ -93,8 +96,8 @@
       </component>
     </bundle>
 
-    <!-- CMSIS VIO Driver component for NUCLEO-H563ZI -->
-    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant= "NUCLEO-H563ZI" Cversion="1.0.0" Capiversion="0.1.0"   condition="NUCLEO-H563ZI VIO">
+    <!-- VIO component for NUCLEO-H563ZI -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant= "NUCLEO-H563ZI" Cversion="2.0.0" Capiversion="1.0.0"   condition="NUCLEO-H563ZI VIO">
       <description>Virtual I/O implementation for NUCLEO-H563ZI</description>
       <RTE_Components_h>
         #define RTE_VIO_BOARD

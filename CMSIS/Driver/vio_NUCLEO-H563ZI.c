@@ -1,8 +1,8 @@
 /******************************************************************************
  * @file     vio_NUCLEO-H563ZI.c
  * @brief    Virtual I/O implementation for board NUCLEO-H563ZI
- * @version  V1.0.0
- * @date     20. June 2023
+ * @version  V2.0.0
+ * @date     11. October 2023
  ******************************************************************************/
 /*
  * Copyright (c) 2023 Arm Limited (or its affiliates).
@@ -35,10 +35,17 @@ vioLED1           | vioSignalOut.1 | GPIO B.0:  LD1 GREEN                       
 vioLED2           | vioSignalOut.2 | GPIO F.4:  LD2 YELLOW                          |
 */
 
+/* History:
+ *  Version 2.0.0
+ *    Updated to API 1.0.0
+ *  Version 1.0.0
+ *    Initial release
+ */
+
 #include <string.h>
 #include "cmsis_vio.h"
 
-#include "RTE_Components.h"
+#include "RTE_Components.h"                 // Component selection
 #include CMSIS_device_header
 
 #if !defined CMSIS_VOUT || !defined CMSIS_VIN
