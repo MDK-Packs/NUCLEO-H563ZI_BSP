@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.7/schema/PACK.xsd">
+<package schemaVersion="1.7.28" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd">
   <name>NUCLEO-H563ZI_BSP</name>
   <description>STMicroelectronics STM32H5 Series NUCLEO-H563ZI Board Support Pack</description>
   <vendor>Keil</vendor>
   <url>https://www.keil.arm.com/packs/</url>
   <repository type="git">https://github.com/MDK-Packs/NUCLEO-H563ZI_BSP.git</repository>
+  <license>LICENSE</license>
 
   <releases>
-    <release version="1.0.0-dev">
-      Active development ...
-
+    <release version="1.0.0-dev1">
+      Pack Description:
+      - Add LICENSE file
+      - Update schemaVersion (1.7.28)
+    </release>
+    <release version="1.0.0-dev0">
+      Pack Description:
+      - Add LICENSE file
+      - Update schemaVersion (1.7.28)
       Board description and documentation for NUCLEO-H563ZI
-      Synchronized with STM32CubeH5 Firmware Package version V1.1.0
+      Synchronize with STM32CubeH5 Firmware Package version V1.1.0
       Drivers:
       - Board Drivers and Config files
       - CMSIS-Driver VIO
-      Example projects (configured with STM32CubeMX V6.9.1):
+      Example projects (configure with STM32CubeMX V6.9.1):
       - CMSIS-RTOS2 Blinky (verify the basic tool setup)
       - CMSIS-RTOS2 Platform (configure the board hardware)
       - Middleware: USB Device: HID, Mass Storage

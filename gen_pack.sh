@@ -9,10 +9,10 @@ set -o pipefail
 # Set version of gen pack library
 # For available versions see https://github.com/Open-CMSIS-Pack/gen-pack/tags.
 # Use the tag name without the prefix "v", e.g., 0.7.0
-REQUIRED_GEN_PACK_LIB="0.8.5"
+REQUIRED_GEN_PACK_LIB="0.9.1"
 
 # Set default command line arguments
-DEFAULT_ARGS=(-c "v")
+DEFAULT_ARGS=()
 
 # Pack warehouse directory - destination
 # Default: ./output
@@ -28,17 +28,20 @@ DEFAULT_ARGS=(-c "v")
 # An empty list defaults to all folders next to this script.
 # Default: empty (all folders)
 #
-# PACK_DIRS="
-#   <list directories here>
-# "
+PACK_DIRS="
+  ./CMSIS
+  ./Documents
+  ./Drivers
+  ./Images
+  ./Projects
+"
 
 # Specify file names to be added to pack base directory
 # Default: empty
 #
-# PACK_BASE_FILES="
-#   LICENSE
-#   <list files here>
-# "
+PACK_BASE_FILES="
+  LICENSE
+"
 
 # Specify file names to be deleted from pack build directory
 # Default: empty
@@ -50,9 +53,7 @@ DEFAULT_ARGS=(-c "v")
 # Specify patches to be applied
 # Default: empty
 #
-# PACK_PATCH_FILES="
-#     <list patches here>
-# "
+# PACK_PATCH_FILES=""
 
 # Specify addition argument to packchk
 # Default: empty
@@ -63,8 +64,8 @@ DEFAULT_ARGS=(-c "v")
 # Default: empty
 #
 PACKCHK_DEPS="
-  Keil.STM32H5xx_DFP.pdsc
   ARM.CMSIS.pdsc
+  Keil.STM32H5xx_DFP.pdsc
 "
 
 # Optional: restrict fallback modes for changelog generation
@@ -74,7 +75,7 @@ PACKCHK_DEPS="
 # - release   Tag annotations, or release descriptions (in order)
 # - tag       Tag annotations only
 #
-PACK_CHANGELOG_MODE="tag"
+# PACK_CHANGELOG_MODE="<full|release|tag>"
 
 #
 # custom pre-processing steps
@@ -103,43 +104,14 @@ function postprocess() {
 
 ############ DO NOT EDIT BELOW ###########
 
-function install_lib() {
-  local URL="https://github.com/Open-CMSIS-Pack/gen-pack/archive/refs/tags/v$1.tar.gz"
-  local STATUS=$(curl -sLI "${URL}" | grep "^HTTP" | tail -n 1 | cut -d' ' -f2 || echo "$((600+$?))")
-  if [[ $STATUS -ge 400 ]]; then
-    echo "Wrong/unavailable gen-pack lib version '$1'!" >&2
-    echo "Check REQUIRED_GEN_PACK_LIB variable."  >&2
-    echo "For available versions see https://github.com/Open-CMSIS-Pack/gen-pack/tags." >&2
-    exit 1
-  fi
-  echo "Downloading gen-pack lib version '$1' to '$2' ..."
-  mkdir -p "$2"
-  curl -L "${URL}" -s | tar -xzf - --strip-components 1 -C "$2" || exit 1
-}
+# Set GEN_PACK_LIB_PATH to use a specific gen-pack library root
+# ... instead of bootstrap based on REQUIRED_GEN_PACK_LIB
+if [[ -f "${GEN_PACK_LIB_PATH}/gen-pack" ]]; then
+  . "${GEN_PACK_LIB_PATH}/gen-pack"
+else
+  . <(curl -sL "https://raw.githubusercontent.com/Open-CMSIS-Pack/gen-pack/main/bootstrap")
+fi
 
-function load_lib() {
-  if [[ -d ${GEN_PACK_LIB} ]]; then
-    . "${GEN_PACK_LIB}/gen-pack"
-    return 0
-  fi
-  local GLOBAL_LIB="/usr/local/share/gen-pack/${REQUIRED_GEN_PACK_LIB}"
-  local USER_LIB="${HOME}/.local/share/gen-pack/${REQUIRED_GEN_PACK_LIB}"
-  if [[ ! -d "${GLOBAL_LIB}" && ! -d "${USER_LIB}" ]]; then
-    echo "Required gen_pack lib not found!" >&2
-    install_lib "${REQUIRED_GEN_PACK_LIB}" "${USER_LIB}"
-  fi
-
-  if [[ -d "${GLOBAL_LIB}" ]]; then
-    . "${GLOBAL_LIB}/gen-pack"
-  elif [[ -d "${USER_LIB}" ]]; then
-    . "${USER_LIB}/gen-pack"
-  else
-    echo "Required gen-pack lib is not installed!" >&2
-    exit 1
-  fi
-}
-
-load_lib
 gen_pack "${DEFAULT_ARGS[@]}" "$@"
 
 exit 0
